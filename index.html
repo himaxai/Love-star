@@ -4,416 +4,204 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Love Star | Name a Real Star After Your Loved One</title>
-    <meta name="description" content="Discover unique stars in the cosmos and name one after someone you love. Official star registry with digital certificate.">
+    <meta name="description" content="Discover unique stars in the cosmos and name one after someone you love.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         :root {
-            --primary: #0066FF;
-            --primary-light: #3D8BFF;
-            --accent: #00D4FF;
-            --gold: #FFD700;
-            --dark: #000000;
-            --dark-2: #060615;
-            --dark-3: #0d0d24;
-            --dark-4: #14142e;
-            --gray: #8892B0;
-            --light: #CCD6F6;
-            --white: #E6F1FF;
+            --primary: #0066FF; --primary-light: #3D8BFF;
+            --accent: #00D4FF; --gold: #FFD700;
+            --dark: #000000; --dark-2: #060615;
+            --gray: #8892B0; --light: #CCD6F6; --white: #E6F1FF;
         }
-
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background: var(--dark);
-            color: var(--white);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* ===== STARFIELD ===== */
+        body { font-family: 'Inter', sans-serif; background: var(--dark); color: var(--white); overflow-x: hidden; line-height: 1.6; }
         .starfield { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
         .starfield canvas { width: 100%; height: 100%; }
 
-        /* ===== NAV ===== */
+        /* NAV */
         nav {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             padding: 0 40px; height: 72px;
             display: flex; align-items: center; justify-content: space-between;
-            background: rgba(0,0,0,0.8); backdrop-filter: blur(20px);
+            background: rgba(0,0,0,0.85); backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(0,102,255,0.1);
         }
         .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
         .nav-logo-img { width: 36px; height: 36px; object-fit: contain; }
-        .nav-name {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.2em; font-weight: 700; letter-spacing: 2px;
-            text-transform: uppercase; color: var(--white);
-            text-decoration: none;
-        }
+        .nav-name { font-family: 'Space Grotesk'; font-size: 1.2em; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--white); }
         .nav-links { display: flex; gap: 28px; align-items: center; }
-        .nav-links a {
-            color: var(--gray); text-decoration: none; font-size: 0.88em;
-            font-weight: 500; letter-spacing: 1px; text-transform: uppercase;
-            transition: color 0.3s;
-        }
+        .nav-links a { color: var(--gray); text-decoration: none; font-size: 0.88em; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; }
         .nav-links a:hover { color: var(--accent); }
-        .nav-cta {
-            padding: 10px 22px !important; background: var(--primary) !important;
-            border-radius: 6px !important; color: white !important;
-        }
+        .nav-cta { padding: 10px 22px !important; background: var(--primary) !important; border-radius: 6px !important; color: white !important; }
 
-        /* ===== HERO ===== */
-        .hero {
-            min-height: 100vh; display: flex; align-items: center;
-            justify-content: center; padding: 120px 20px 80px; text-align: center;
-        }
+        /* HERO */
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 120px 20px 80px; text-align: center; }
         .hero-content { max-width: 800px; }
-        .hero-badge {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 8px 20px; background: rgba(0,102,255,0.1);
-            border: 1px solid rgba(0,102,255,0.25); border-radius: 50px;
-            font-size: 0.82em; color: var(--accent); margin-bottom: 30px;
-            letter-spacing: 1.5px; text-transform: uppercase;
-        }
-        .hero-badge .pulse {
-            width: 8px; height: 8px; background: #00FF88;
-            border-radius: 50%; animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0%,100% { opacity:1; transform:scale(1); }
-            50% { opacity:0.5; transform:scale(1.5); }
-        }
-        .hero h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 4.2em; font-weight: 900; line-height: 1.1;
-            margin-bottom: 25px; letter-spacing: -1px;
-        }
-        .gradient-text {
-            background: linear-gradient(135deg, var(--accent), var(--primary), #A855F7);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .hero p {
-            font-size: 1.2em; color: var(--gray); max-width: 600px;
-            margin: 0 auto 40px; line-height: 1.8;
-        }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; background: rgba(0,102,255,0.1); border: 1px solid rgba(0,102,255,0.25); border-radius: 50px; font-size: 0.82em; color: var(--accent); margin-bottom: 30px; letter-spacing: 1.5px; text-transform: uppercase; }
+        .hero-badge .pulse { width: 8px; height: 8px; background: #00FF88; border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.5;transform:scale(1.5);} }
+        .hero h1 { font-family: 'Space Grotesk'; font-size: 4.2em; font-weight: 900; line-height: 1.1; margin-bottom: 25px; letter-spacing: -1px; }
+        .gradient-text { background: linear-gradient(135deg, var(--accent), var(--primary), #A855F7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 1.2em; color: var(--gray); max-width: 600px; margin: 0 auto 40px; line-height: 1.8; }
         .hero-actions { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
-        .btn-primary {
-            display: inline-flex; align-items: center; gap: 10px;
-            padding: 16px 36px; background: var(--primary); color: white;
-            text-decoration: none; border-radius: 8px; font-size: 1em;
-            font-weight: 600; border: none; cursor: pointer; transition: all 0.3s;
-        }
-        .btn-primary:hover {
-            background: var(--primary-light); transform: translateY(-2px);
-            box-shadow: 0 10px 40px rgba(0,102,255,0.3);
-        }
-        .btn-outline {
-            display: inline-flex; align-items: center; gap: 10px;
-            padding: 16px 36px; background: transparent; color: var(--white);
-            text-decoration: none; border-radius: 8px; font-size: 1em;
-            font-weight: 600; border: 1px solid rgba(255,255,255,0.2);
-            cursor: pointer; transition: all 0.3s;
-        }
+        .btn-primary { display: inline-flex; align-items: center; gap: 10px; padding: 16px 36px; background: var(--primary); color: white; text-decoration: none; border-radius: 8px; font-size: 1em; font-weight: 600; border: none; cursor: pointer; transition: all 0.3s; }
+        .btn-primary:hover { background: var(--primary-light); transform: translateY(-2px); box-shadow: 0 10px 40px rgba(0,102,255,0.3); }
+        .btn-outline { display: inline-flex; align-items: center; gap: 10px; padding: 16px 36px; background: transparent; color: var(--white); text-decoration: none; border-radius: 8px; font-size: 1em; font-weight: 600; border: 1px solid rgba(255,255,255,0.2); cursor: pointer; transition: all 0.3s; }
         .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
-        .hero-stats {
-            display: flex; justify-content: center; gap: 60px;
-            margin-top: 60px; padding-top: 40px;
-            border-top: 1px solid rgba(255,255,255,0.08);
-        }
+        .hero-stats { display: flex; justify-content: center; gap: 60px; margin-top: 60px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.08); }
         .stat h3 { font-family: 'Space Grotesk'; font-size: 2.5em; font-weight: 700; }
         .stat p { font-size: 0.85em; color: var(--gray); margin-top: 5px; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* ===== SECTION ===== */
+        /* SECTIONS */
         .section { padding: 100px 20px; }
         .section-header { text-align: center; margin-bottom: 60px; }
-        .section-label {
-            font-size: 0.82em; color: var(--primary); text-transform: uppercase;
-            letter-spacing: 3px; font-weight: 600; margin-bottom: 12px;
-        }
-        .section-title {
-            font-family: 'Space Grotesk'; font-size: 2.8em; font-weight: 700; margin-bottom: 15px;
-        }
+        .section-label { font-size: 0.82em; color: var(--primary); text-transform: uppercase; letter-spacing: 3px; font-weight: 600; margin-bottom: 12px; }
+        .section-title { font-family: 'Space Grotesk'; font-size: 2.8em; font-weight: 700; margin-bottom: 15px; }
         .section-subtitle { font-size: 1.05em; color: var(--gray); max-width: 550px; margin: 0 auto; }
 
-        /* ===== HOW IT WORKS ===== */
-        .steps-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 25px; max-width: 1000px; margin: 0 auto;
-        }
-        .step-card {
-            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 16px; padding: 35px 28px; transition: all 0.4s; position: relative; overflow: hidden;
-        }
-        .step-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--accent)); opacity: 0; transition: opacity 0.4s;
-        }
-        .step-card:hover::before { opacity: 1; }
+        /* HOW IT WORKS */
+        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; max-width: 1000px; margin: 0 auto; }
+        .step-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 35px 28px; transition: all 0.4s; position: relative; overflow: hidden; }
+        .step-card::before { content:''; position:absolute; top:0; left:0; width:100%; height:2px; background:linear-gradient(90deg,var(--primary),var(--accent)); opacity:0; transition:opacity 0.4s; }
+        .step-card:hover::before { opacity:1; }
         .step-card:hover { border-color: rgba(0,102,255,0.2); transform: translateY(-5px); }
-        .step-number {
-            font-family: 'Space Grotesk'; font-size: 3em; font-weight: 900;
-            color: rgba(0,102,255,0.12); margin-bottom: 12px;
-        }
-        .step-card h3 { font-size: 1.2em; font-weight: 700; margin-bottom: 10px; }
-        .step-card p { color: var(--gray); line-height: 1.7; font-size: 0.95em; }
+        .step-number { font-family:'Space Grotesk'; font-size:3em; font-weight:900; color:rgba(0,102,255,0.12); margin-bottom:12px; }
+        .step-card h3 { font-size:1.2em; font-weight:700; margin-bottom:10px; }
+        .step-card p { color:var(--gray); line-height:1.7; font-size:0.95em; }
 
-        /* ===== STAR CATALOG ===== */
-        .catalog-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px; max-width: 1200px; margin: 0 auto;
-        }
-        .star-card {
-            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 16px; overflow: hidden; cursor: pointer; transition: all 0.4s;
-        }
-        .star-card:hover {
-            border-color: rgba(0,102,255,0.3); transform: translateY(-8px);
-            box-shadow: 0 20px 60px rgba(0,102,255,0.15);
-        }
-        .star-card-image {
-            width: 100%; height: 220px; object-fit: cover;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-        }
+        /* CATALOG */
+        .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
+        .star-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; overflow: hidden; cursor: pointer; transition: all 0.4s; position: relative; }
+        .star-card:hover { border-color: rgba(0,102,255,0.3); transform: translateY(-8px); box-shadow: 0 20px 60px rgba(0,102,255,0.15); }
+        .star-card-image { width: 100%; height: 220px; object-fit: cover; border-bottom: 1px solid rgba(255,255,255,0.06); }
         .star-card-body { padding: 25px; }
-        .star-card-name {
-            font-family: 'Space Grotesk'; font-size: 1.3em; font-weight: 700;
-            color: var(--white); margin-bottom: 5px;
-        }
-        .star-card-type { font-size: 0.85em; color: var(--accent); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
-        .star-card-specs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; }
-        .spec-tag {
-            padding: 5px 12px; background: rgba(0,102,255,0.1);
-            border: 1px solid rgba(0,102,255,0.15); border-radius: 6px;
-            font-size: 0.8em; color: var(--light);
-        }
-        .star-card-price {
-            display: flex; justify-content: space-between; align-items: center;
-            padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.06);
-        }
-        .star-price {
-            font-family: 'Space Grotesk'; font-size: 1.4em; font-weight: 700; color: var(--white);
-        }
-        .star-price span { font-size: 0.5em; color: var(--gray); font-weight: 400; }
-        .star-card-btn {
-            padding: 10px 20px; background: var(--primary); color: white;
-            border: none; border-radius: 6px; font-size: 0.88em; font-weight: 600;
-            cursor: pointer; transition: all 0.3s;
-        }
-        .star-card-btn:hover { background: var(--primary-light); }
+        .star-card-name { font-family:'Space Grotesk'; font-size:1.3em; font-weight:700; color:var(--white); margin-bottom:5px; }
+        .star-card-type { font-size:0.85em; color:var(--accent); margin-bottom:15px; text-transform:uppercase; letter-spacing:1px; }
+        .star-card-specs { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:15px; }
+        .spec-tag { padding:5px 12px; background:rgba(0,102,255,0.1); border:1px solid rgba(0,102,255,0.15); border-radius:6px; font-size:0.8em; color:var(--light); }
+        .star-card-price { display:flex; justify-content:space-between; align-items:center; padding-top:15px; border-top:1px solid rgba(255,255,255,0.06); }
+        .star-price { font-family:'Space Grotesk'; font-size:1.4em; font-weight:700; }
+        .star-price span { font-size:0.5em; color:var(--gray); font-weight:400; }
+        .star-card-btn { padding:10px 20px; background:var(--primary); color:white; border:none; border-radius:6px; font-size:0.88em; font-weight:600; cursor:pointer; transition:all 0.3s; }
+        .star-card-btn:hover { background:var(--primary-light); }
+        .star-status { position:absolute; top:15px; right:15px; padding:5px 14px; border-radius:50px; font-size:0.75em; font-weight:600; text-transform:uppercase; letter-spacing:1px; }
+        .status-available { background:rgba(0,255,136,0.15); color:#00FF88; border:1px solid rgba(0,255,136,0.3); }
+        .status-owned { background:rgba(255,51,102,0.15); color:#FF3366; border:1px solid rgba(255,51,102,0.3); }
+        .owner-banner { background:linear-gradient(135deg,rgba(255,215,0,0.1),rgba(255,215,0,0.03)); border:1px solid rgba(255,215,0,0.2); border-radius:12px; padding:15px 20px; margin-top:15px; text-align:center; }
+        .owner-name { font-family:'Space Grotesk'; font-size:1.1em; font-weight:700; color:var(--gold); }
+        .owner-label { font-size:0.75em; color:var(--gray); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:3px; }
 
-        /* ===== AVAILABILITY BADGE ===== */
-        .star-status {
-            position: absolute; top: 15px; right: 15px;
-            padding: 5px 14px; border-radius: 50px;
-            font-size: 0.75em; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
-        }
-        .status-available { background: rgba(0,255,136,0.15); color: #00FF88; border: 1px solid rgba(0,255,136,0.3); }
-        .status-owned { background: rgba(255,51,102,0.15); color: #FF3366; border: 1px solid rgba(255,51,102,0.3); }
+        /* LOADING */
+        .loading-overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999; align-items:center; justify-content:center; flex-direction:column; gap:20px; }
+        .loading-overlay.active { display:flex; }
+        .spinner { width:50px; height:50px; border:3px solid rgba(0,102,255,0.2); border-top-color:var(--accent); border-radius:50%; animation:spin 1s linear infinite; }
+        @keyframes spin { to{transform:rotate(360deg);} }
+        .loading-overlay p { color:var(--gray); font-size:0.95em; }
 
-        .star-card-wrapper { position: relative; }
+        /* MODAL */
+        .modal-overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.88); backdrop-filter:blur(10px); z-index:2000; overflow-y:auto; padding:40px 20px; }
+        .modal-overlay.active { display:block; }
+        .modal { max-width:800px; margin:0 auto; background:#060615; border:1px solid rgba(255,255,255,0.08); border-radius:20px; overflow:hidden; animation:modalIn 0.4s ease; }
+        @keyframes modalIn { from{opacity:0;transform:translateY(30px);} to{opacity:1;transform:translateY(0);} }
+        .modal-close { position:absolute; top:20px; right:25px; background:rgba(255,255,255,0.1); border:none; color:white; width:40px; height:40px; border-radius:50%; font-size:1.2em; cursor:pointer; z-index:10; transition:background 0.3s; }
+        .modal-close:hover { background:rgba(255,255,255,0.2); }
+        .modal-image { width:100%; height:350px; object-fit:cover; }
+        .modal-body { padding:40px; position:relative; }
+        .modal-star-name { font-family:'Space Grotesk'; font-size:2.2em; font-weight:700; margin-bottom:5px; }
+        .modal-star-type { color:var(--accent); font-size:0.95em; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:30px; }
+        .modal-specs { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:rgba(255,255,255,0.05); border-radius:12px; overflow:hidden; margin-bottom:30px; }
+        .modal-spec { background:#060615; padding:20px; }
+        .modal-spec-label { font-size:0.78em; color:var(--gray); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:5px; }
+        .modal-spec-value { font-family:'Space Grotesk'; font-size:1.15em; font-weight:600; }
+        .modal-description { color:var(--gray); line-height:1.9; font-size:1em; margin-bottom:30px; padding:25px; background:rgba(255,255,255,0.02); border-radius:12px; border-left:3px solid var(--primary); }
+        .modal-description h3 { color:var(--white); margin-bottom:12px; font-size:1.1em; }
 
-        /* ===== OWNER DISPLAY ===== */
-        .owner-banner {
-            background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,215,0,0.03));
-            border: 1px solid rgba(255,215,0,0.2); border-radius: 12px;
-            padding: 15px 20px; margin-top: 15px; text-align: center;
-        }
-        .owner-name {
-            font-family: 'Space Grotesk'; font-size: 1.1em; font-weight: 700; color: var(--gold);
-        }
-        .owner-label { font-size: 0.75em; color: var(--gray); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 3px; }
+        /* PURCHASE FORM */
+        .purchase-section { background:rgba(0,102,255,0.05); border:1px solid rgba(0,102,255,0.15); border-radius:16px; padding:30px; margin-top:10px; }
+        .purchase-section h3 { font-family:'Space Grotesk'; font-size:1.3em; margin-bottom:20px; }
+        .form-row { display:grid; grid-template-columns:1fr 1fr; gap:15px; }
+        .form-group { margin-bottom:15px; }
+        .form-label { display:block; font-size:0.82em; color:var(--gray); text-transform:uppercase; letter-spacing:1px; font-weight:600; margin-bottom:6px; }
+        .form-input { width:100%; padding:13px 16px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:var(--white); font-family:'Inter'; font-size:0.95em; transition:border-color 0.3s; }
+        .form-input:focus { outline:none; border-color:var(--primary); background:rgba(0,102,255,0.05); }
+        .form-input::placeholder { color:rgba(255,255,255,0.2); }
+        .form-input[readonly] { background:rgba(255,255,255,0.02); color:var(--gray); cursor:not-allowed; }
+        .purchase-btn { width:100%; padding:16px; background:var(--primary); color:white; border:none; border-radius:8px; font-size:1.05em; font-weight:700; cursor:pointer; transition:all 0.3s; margin-top:10px; font-family:'Inter'; }
+        .purchase-btn:hover { background:var(--primary-light); box-shadow:0 10px 40px rgba(0,102,255,0.3); }
+        .purchase-btn:disabled { opacity:0.5; cursor:not-allowed; }
 
-        /* ===== STAR DETAIL MODAL ===== */
-        .modal-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85); backdrop-filter: blur(10px);
-            z-index: 2000; overflow-y: auto; padding: 40px 20px;
-        }
-        .modal-overlay.active { display: block; }
-        .modal {
-            max-width: 800px; margin: 0 auto;
-            background: var(--dark-2); border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 20px; overflow: hidden; animation: modalIn 0.4s ease;
-        }
-        @keyframes modalIn { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
-        .modal-close {
-            position: absolute; top: 20px; right: 25px;
-            background: rgba(255,255,255,0.1); border: none; color: white;
-            width: 40px; height: 40px; border-radius: 50%; font-size: 1.2em;
-            cursor: pointer; z-index: 10; transition: background 0.3s;
-        }
-        .modal-close:hover { background: rgba(255,255,255,0.2); }
-        .modal-image { width: 100%; height: 350px; object-fit: cover; }
-        .modal-body { padding: 40px; position: relative; }
-        .modal-star-name {
-            font-family: 'Space Grotesk'; font-size: 2.2em; font-weight: 700;
-            margin-bottom: 5px;
-        }
-        .modal-star-type { color: var(--accent); font-size: 0.95em; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 30px; }
-        .modal-specs {
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: 1px; background: rgba(255,255,255,0.05);
-            border-radius: 12px; overflow: hidden; margin-bottom: 30px;
-        }
-        .modal-spec {
-            background: var(--dark-2); padding: 20px;
-        }
-        .modal-spec-label { font-size: 0.78em; color: var(--gray); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 5px; }
-        .modal-spec-value { font-family: 'Space Grotesk'; font-size: 1.15em; font-weight: 600; color: var(--white); }
-        .modal-description {
-            color: var(--gray); line-height: 1.9; font-size: 1em; margin-bottom: 30px;
-            padding: 25px; background: rgba(255,255,255,0.02);
-            border-radius: 12px; border-left: 3px solid var(--primary);
-        }
-        .modal-description h3 { color: var(--white); margin-bottom: 12px; font-size: 1.1em; }
+        /* CERTIFICATE */
+        .certificate-plate { background:linear-gradient(135deg,rgba(255,215,0,0.08),rgba(255,215,0,0.02)); border:2px solid rgba(255,215,0,0.25); border-radius:20px; padding:40px; text-align:center; margin-top:30px; position:relative; display:none; }
+        .certificate-plate::before { content:'★ OFFICIAL STAR CERTIFICATE ★'; position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:#060615; padding:0 20px; font-size:0.7em; color:var(--gold); letter-spacing:3px; white-space:nowrap; }
+        .cert-owner-name { font-family:'Space Grotesk'; font-size:2.2em; font-weight:900; color:var(--gold); margin:15px 0 5px; }
+        .cert-star-name { font-size:1em; color:var(--gray); margin-bottom:20px; }
+        .cert-details { display:flex; justify-content:center; gap:30px; flex-wrap:wrap; margin-top:15px; padding-top:15px; border-top:1px solid rgba(255,215,0,0.15); }
+        .cert-detail { text-align:center; }
+        .cert-detail-label { font-size:0.7em; color:var(--gray); text-transform:uppercase; letter-spacing:1.5px; }
+        .cert-detail-value { font-family:'Space Grotesk'; font-size:0.95em; font-weight:600; margin-top:3px; }
 
-        /* ===== PURCHASE FORM ===== */
-        .purchase-section {
-            background: rgba(0,102,255,0.05); border: 1px solid rgba(0,102,255,0.15);
-            border-radius: 16px; padding: 30px; margin-top: 10px;
-        }
-        .purchase-section h3 {
-            font-family: 'Space Grotesk'; font-size: 1.3em; margin-bottom: 20px; color: var(--white);
-        }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
-        .form-group { margin-bottom: 15px; }
-        .form-label {
-            display: block; font-size: 0.82em; color: var(--gray);
-            text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 6px;
-        }
-        .form-input {
-            width: 100%; padding: 13px 16px;
-            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 8px; color: var(--white); font-family: 'Inter'; font-size: 0.95em;
-            transition: border-color 0.3s;
-        }
-        .form-input:focus { outline: none; border-color: var(--primary); background: rgba(0,102,255,0.05); }
-        .form-input::placeholder { color: rgba(255,255,255,0.2); }
-        .form-input[readonly] {
-            background: rgba(255,255,255,0.02); color: var(--gray); cursor: not-allowed;
-        }
-        .purchase-btn {
-            width: 100%; padding: 16px; background: var(--primary); color: white;
-            border: none; border-radius: 8px; font-size: 1.05em; font-weight: 700;
-            cursor: pointer; transition: all 0.3s; margin-top: 10px;
-            font-family: 'Inter';
-        }
-        .purchase-btn:hover { background: var(--primary-light); box-shadow: 0 10px 40px rgba(0,102,255,0.3); }
+        /* PACKAGES */
+        .packages-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:25px; max-width:1050px; margin:0 auto; }
+        .package-card { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:16px; padding:40px 30px; transition:all 0.4s; position:relative; }
+        .package-card:hover { border-color:rgba(0,102,255,0.3); transform:translateY(-5px); }
+        .package-card.featured { border-color:var(--primary); background:rgba(0,102,255,0.05); }
+        .package-badge { position:absolute; top:18px; right:18px; padding:5px 14px; background:var(--primary); color:white; border-radius:50px; font-size:0.72em; font-weight:600; text-transform:uppercase; letter-spacing:1px; }
+        .package-name { font-size:1em; color:var(--gray); text-transform:uppercase; letter-spacing:2px; font-weight:600; margin-bottom:8px; }
+        .package-price { font-family:'Space Grotesk'; font-size:3em; font-weight:900; margin:8px 0 20px; }
+        .package-price span { font-size:0.35em; color:var(--gray); font-weight:400; }
+        .package-features { list-style:none; margin-bottom:25px; }
+        .package-features li { padding:9px 0; color:var(--gray); border-bottom:1px solid rgba(255,255,255,0.04); display:flex; align-items:center; gap:10px; font-size:0.95em; }
+        .check { color:var(--accent); font-weight:bold; }
 
-        /* ===== OWNERSHIP CERTIFICATE CARD ===== */
-        .certificate-plate {
-            background: linear-gradient(135deg, rgba(255,215,0,0.08), rgba(255,215,0,0.02));
-            border: 2px solid rgba(255,215,0,0.25); border-radius: 20px;
-            padding: 40px; text-align: center; margin-top: 30px; position: relative;
-        }
-        .certificate-plate::before {
-            content: '★ OFFICIAL STAR CERTIFICATE ★'; position: absolute;
-            top: -12px; left: 50%; transform: translateX(-50%);
-            background: var(--dark-2); padding: 0 20px;
-            font-size: 0.7em; color: var(--gold); letter-spacing: 3px;
-        }
-        .cert-owner-name {
-            font-family: 'Space Grotesk'; font-size: 2.2em; font-weight: 900;
-            color: var(--gold); margin: 15px 0 5px;
-        }
-        .cert-star-name { font-size: 1em; color: var(--gray); margin-bottom: 20px; }
-        .cert-details {
-            display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;
-            margin-top: 15px; padding-top: 15px;
-            border-top: 1px solid rgba(255,215,0,0.15);
-        }
-        .cert-detail { text-align: center; }
-        .cert-detail-label { font-size: 0.7em; color: var(--gray); text-transform: uppercase; letter-spacing: 1.5px; }
-        .cert-detail-value { font-family: 'Space Grotesk'; font-size: 0.95em; font-weight: 600; color: var(--white); margin-top: 3px; }
+        /* TESTIMONIALS */
+        .testimonials-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:25px; max-width:1050px; margin:0 auto; }
+        .testimonial-card { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:16px; padding:30px; }
+        .testimonial-stars { color:#FFD700; font-size:0.9em; margin-bottom:12px; letter-spacing:2px; }
+        .testimonial-card p { color:var(--gray); line-height:1.8; margin-bottom:18px; font-size:0.95em; }
+        .testimonial-author { display:flex; align-items:center; gap:12px; }
+        .testimonial-avatar { width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--accent)); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.82em; }
+        .testimonial-name { font-weight:600; font-size:0.95em; }
+        .testimonial-role { font-size:0.82em; color:var(--gray); }
 
-        /* ===== PACKAGES ===== */
-        .packages-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px; max-width: 1050px; margin: 0 auto;
-        }
-        .package-card {
-            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 16px; padding: 40px 30px; transition: all 0.4s; position: relative;
-        }
-        .package-card:hover { border-color: rgba(0,102,255,0.3); transform: translateY(-5px); }
-        .package-card.featured { border-color: var(--primary); background: rgba(0,102,255,0.05); }
-        .package-badge {
-            position: absolute; top: 18px; right: 18px; padding: 5px 14px;
-            background: var(--primary); color: white; border-radius: 50px;
-            font-size: 0.72em; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
-        }
-        .package-name { font-size: 1em; color: var(--gray); text-transform: uppercase; letter-spacing: 2px; font-weight: 600; margin-bottom: 8px; }
-        .package-price { font-family: 'Space Grotesk'; font-size: 3em; font-weight: 900; margin: 8px 0 20px; }
-        .package-price span { font-size: 0.35em; color: var(--gray); font-weight: 400; }
-        .package-features { list-style: none; margin-bottom: 25px; }
-        .package-features li {
-            padding: 9px 0; color: var(--gray);
-            border-bottom: 1px solid rgba(255,255,255,0.04);
-            display: flex; align-items: center; gap: 10px; font-size: 0.95em;
-        }
-        .check { color: var(--accent); font-weight: bold; }
-        .package-card .btn-primary { width: 100%; justify-content: center; }
+        /* FOOTER */
+        footer { border-top:1px solid rgba(255,255,255,0.06); padding:50px 20px 25px; }
+        .footer-content { max-width:1050px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:35px; margin-bottom:35px; }
+        .footer-brand p { color:var(--gray); max-width:280px; line-height:1.7; font-size:0.9em; }
+        .footer-links h4 { color:var(--white); font-size:0.85em; text-transform:uppercase; letter-spacing:2px; margin-bottom:12px; }
+        .footer-links a { display:block; color:var(--gray); text-decoration:none; padding:4px 0; font-size:0.88em; transition:color 0.3s; }
+        .footer-links a:hover { color:var(--accent); }
+        .footer-bottom { border-top:1px solid rgba(255,255,255,0.06); padding-top:18px; text-align:center; color:var(--gray); font-size:0.82em; max-width:1050px; margin:0 auto; }
 
-        /* ===== TESTIMONIALS ===== */
-        .testimonials-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px; max-width: 1050px; margin: 0 auto;
-        }
-        .testimonial-card {
-            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 16px; padding: 30px;
-        }
-        .testimonial-stars { color: #FFD700; font-size: 0.9em; margin-bottom: 12px; letter-spacing: 2px; }
-        .testimonial-card p { color: var(--gray); line-height: 1.8; margin-bottom: 18px; font-size: 0.95em; }
-        .testimonial-author { display: flex; align-items: center; gap: 12px; }
-        .testimonial-avatar {
-            width: 40px; height: 40px; border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 700; font-size: 0.82em;
-        }
-        .testimonial-name { font-weight: 600; color: var(--white); font-size: 0.95em; }
-        .testimonial-role { font-size: 0.82em; color: var(--gray); }
+        /* TOAST */
+        .toast { position:fixed; bottom:30px; left:50%; transform:translateX(-50%); padding:14px 28px; border-radius:10px; font-size:0.95em; font-weight:600; z-index:9999; animation:toastIn 0.4s ease; display:none; }
+        .toast.success { background:rgba(0,255,136,0.15); border:1px solid rgba(0,255,136,0.3); color:#00FF88; }
+        .toast.error { background:rgba(255,51,102,0.15); border:1px solid rgba(255,51,102,0.3); color:#FF3366; }
+        @keyframes toastIn { from{opacity:0;transform:translate(-50%,20px);} to{opacity:1;transform:translate(-50%,0);} }
 
-        /* ===== FOOTER ===== */
-        footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 50px 20px 25px; }
-        .footer-content {
-            max-width: 1050px; margin: 0 auto; display: flex;
-            justify-content: space-between; flex-wrap: wrap; gap: 35px; margin-bottom: 35px;
-        }
-        .footer-brand p { color: var(--gray); max-width: 280px; line-height: 1.7; font-size: 0.9em; }
-        .footer-links h4 { color: var(--white); font-size: 0.85em; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
-        .footer-links a { display: block; color: var(--gray); text-decoration: none; padding: 4px 0; font-size: 0.88em; transition: color 0.3s; }
-        .footer-links a:hover { color: var(--accent); }
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.06); padding-top: 18px;
-            text-align: center; color: var(--gray); font-size: 0.82em; max-width: 1050px; margin: 0 auto;
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            nav { padding: 0 18px; }
-            .nav-links { display: none; }
-            .hero h1 { font-size: 2.3em; }
-            .hero p { font-size: 1.05em; }
-            .hero-stats { gap: 25px; flex-wrap: wrap; }
-            .stat h3 { font-size: 1.8em; }
-            .section-title { font-size: 2em; }
-            .modal-image { height: 220px; }
-            .modal-body { padding: 25px; }
-            .modal-star-name { font-size: 1.6em; }
-            .modal-specs { grid-template-columns: 1fr; }
-            .form-row { grid-template-columns: 1fr; }
-            .cert-owner-name { font-size: 1.6em; }
-            .footer-content { flex-direction: column; }
-            .package-price { font-size: 2.2em; }
-            .catalog-grid { grid-template-columns: 1fr; }
+        /* RESPONSIVE */
+        @media(max-width:768px){
+            nav{padding:0 18px;} .nav-links{display:none;}
+            .hero h1{font-size:2.3em;} .hero p{font-size:1.05em;}
+            .hero-stats{gap:25px;flex-wrap:wrap;} .stat h3{font-size:1.8em;}
+            .section-title{font-size:2em;} .modal-image{height:220px;}
+            .modal-body{padding:25px;} .modal-star-name{font-size:1.6em;}
+            .modal-specs{grid-template-columns:1fr;} .form-row{grid-template-columns:1fr;}
+            .catalog-grid{grid-template-columns:1fr;} .footer-content{flex-direction:column;}
         }
     </style>
 </head>
 <body>
 
+<!-- LOADING OVERLAY -->
+<div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner"></div>
+    <p id="loadingText">Loading star catalog...</p>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- STARFIELD -->
 <div class="starfield"><canvas id="starCanvas"></canvas></div>
 
 <!-- NAV -->
@@ -457,25 +245,13 @@
         <p class="section-subtitle">Three simple steps to name a star after your loved one</p>
     </div>
     <div class="steps-grid">
-        <div class="step-card">
-            <div class="step-number">01</div>
-            <h3>Browse Our Catalog</h3>
-            <p>Explore newly discovered stars with detailed specifications, distance, and unique characteristics.</p>
-        </div>
-        <div class="step-card">
-            <div class="step-number">02</div>
-            <h3>Choose Your Star</h3>
-            <p>Select the star that speaks to you. Each star is unique with its own color, size, and cosmic story.</p>
-        </div>
-        <div class="step-card">
-            <div class="step-number">03</div>
-            <h3>Name & Certify</h3>
-            <p>Enter the owner's name and receive an official digital certificate with full star coordinates.</p>
-        </div>
+        <div class="step-card"><div class="step-number">01</div><h3>Browse Our Catalog</h3><p>Explore newly discovered stars with detailed specifications, distance, and unique characteristics.</p></div>
+        <div class="step-card"><div class="step-number">02</div><h3>Choose Your Star</h3><p>Select the star that speaks to you. Each star is unique with its own color, size, and cosmic story.</p></div>
+        <div class="step-card"><div class="step-number">03</div><h3>Name & Certify</h3><p>Enter the owner's name and receive an official digital certificate with full star coordinates.</p></div>
     </div>
 </section>
 
-<!-- STAR CATALOG -->
+<!-- CATALOG -->
 <section class="section" id="catalog">
     <div class="section-header">
         <div class="section-label">Observatory</div>
@@ -483,7 +259,10 @@
         <p class="section-subtitle">Recently discovered stars available for naming</p>
     </div>
     <div class="catalog-grid" id="catalogGrid">
-        <!-- Stars will be injected by JavaScript -->
+        <div style="grid-column:1/-1; text-align:center; padding:60px; color:var(--gray);">
+            <div class="spinner" style="margin:0 auto 20px;"></div>
+            <p>Loading stars from observatory...</p>
+        </div>
     </div>
 </section>
 
@@ -545,26 +324,17 @@
         <div class="testimonial-card">
             <div class="testimonial-stars">★★★★★</div>
             <p>"Named a star after my wife for our 10th anniversary. The certificate was beautiful and she absolutely loved it!"</p>
-            <div class="testimonial-author">
-                <div class="testimonial-avatar">JM</div>
-                <div><div class="testimonial-name">James Miller</div><div class="testimonial-role">New York, USA</div></div>
-            </div>
+            <div class="testimonial-author"><div class="testimonial-avatar">JM</div><div><div class="testimonial-name">James Miller</div><div class="testimonial-role">New York, USA</div></div></div>
         </div>
         <div class="testimonial-card">
             <div class="testimonial-stars">★★★★★</div>
             <p>"The star photography is incredible. You can actually see the unique colors and patterns. My boyfriend was speechless!"</p>
-            <div class="testimonial-author">
-                <div class="testimonial-avatar">SK</div>
-                <div><div class="testimonial-name">Sophie Klein</div><div class="testimonial-role">Berlin, Germany</div></div>
-            </div>
+            <div class="testimonial-author"><div class="testimonial-avatar">SK</div><div><div class="testimonial-name">Sophie Klein</div><div class="testimonial-role">Berlin, Germany</div></div></div>
         </div>
         <div class="testimonial-card">
             <div class="testimonial-stars">★★★★★</div>
-            <p>"Named a star after my late grandmother. It's a beautiful way to honor her memory. The whole experience was touching."</p>
-            <div class="testimonial-author">
-                <div class="testimonial-avatar">AT</div>
-                <div><div class="testimonial-name">Aisha Thompson</div><div class="testimonial-role">London, UK</div></div>
-            </div>
+            <p>"Named a star after my late grandmother. A beautiful way to honor her memory. The whole experience was touching."</p>
+            <div class="testimonial-author"><div class="testimonial-avatar">AT</div><div><div class="testimonial-name">Aisha Thompson</div><div class="testimonial-role">London, UK</div></div></div>
         </div>
     </div>
 </section>
@@ -573,11 +343,11 @@
 <footer>
     <div class="footer-content">
         <div class="footer-brand">
-            <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
-                <img src="1000013201-removebg-preview.png" alt="Love Star" style="width:30px; height:30px; object-fit:contain;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+                <img src="1000013201-removebg-preview.png" alt="Love Star" style="width:30px;height:30px;object-fit:contain;">
                 <span class="nav-name" style="font-size:1em;">LOVE STAR</span>
             </div>
-            <p>Every love deserves to shine forever in the cosmos. Powered by real astronomical observation.</p>
+            <p>Every love deserves to shine forever in the cosmos.</p>
         </div>
         <div class="footer-links"><h4>Company</h4><a href="#how">How It Works</a><a href="#catalog">Star Catalog</a><a href="#pricing">Pricing</a><a href="#reviews">Reviews</a></div>
         <div class="footer-links"><h4>Legal</h4><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Refund Policy</a></div>
@@ -586,7 +356,7 @@
     <div class="footer-bottom"><p>© 2025 Love Star. All rights reserved.</p></div>
 </footer>
 
-<!-- STAR DETAIL MODAL -->
+<!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay">
     <div class="modal">
         <button class="modal-close" onclick="closeModal()">✕</button>
@@ -594,7 +364,6 @@
         <div class="modal-body">
             <h2 class="modal-star-name" id="modalName"></h2>
             <div class="modal-star-type" id="modalType"></div>
-
             <div class="modal-specs">
                 <div class="modal-spec"><div class="modal-spec-label">Distance</div><div class="modal-spec-value" id="modalDistance"></div></div>
                 <div class="modal-spec"><div class="modal-spec-label">Constellation</div><div class="modal-spec-value" id="modalConstellation"></div></div>
@@ -603,11 +372,7 @@
                 <div class="modal-spec"><div class="modal-spec-label">Coordinates (RA)</div><div class="modal-spec-value" id="modalRA"></div></div>
                 <div class="modal-spec"><div class="modal-spec-label">Coordinates (DEC)</div><div class="modal-spec-value" id="modalDEC"></div></div>
             </div>
-
-            <div class="modal-description">
-                <h3>Discovery Story</h3>
-                <p id="modalStory"></p>
-            </div>
+            <div class="modal-description"><h3>Discovery Story</h3><p id="modalStory"></p></div>
 
             <!-- PURCHASE FORM -->
             <div class="purchase-section" id="purchaseForm">
@@ -623,21 +388,21 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label class="form-label">Star Owner Name *</label>
-                        <input type="text" class="form-input" id="formOwner" placeholder="Who is this star for?" required>
+                        <input type="text" class="form-input" id="formOwner" placeholder="Who is this star for?">
                     </div>
                     <div class="form-group">
                         <label class="form-label">Gift Giver Name *</label>
-                        <input type="text" class="form-input" id="formGiver" placeholder="Your name" required>
+                        <input type="text" class="form-input" id="formGiver" placeholder="Your name">
                     </div>
                 </div>
-                <button class="purchase-btn" onclick="purchaseStar()">
+                <button class="purchase-btn" id="purchaseBtn" onclick="purchaseStar()">
                     Register This Star — $9.99
                 </button>
             </div>
 
-            <!-- CERTIFICATE (shown after purchase) -->
-            <div class="certificate-plate" id="certificatePlate" style="display:none;">
-                <div class="owner-label">Official Star Owner</div>
+            <!-- CERTIFICATE -->
+            <div class="certificate-plate" id="certificatePlate">
+                <div class="owner-label" style="font-size:0.75em;color:var(--gray);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:3px;">Official Star Owner</div>
                 <div class="cert-owner-name" id="certOwnerName"></div>
                 <div class="cert-star-name" id="certStarNameDisplay"></div>
                 <div class="cert-details">
@@ -650,317 +415,268 @@
     </div>
 </div>
 
-<script>
-// ===== STAR DATABASE =====
-const stars = [
-    {
-        id: 'LS-7291',
-        name: 'Veloria Prime',
-        type: 'Blue Supergiant',
-        image: 'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=600&h=400&fit=crop',
-        distance: '1,240 Light Years',
-        constellation: 'Orion',
-        temperature: '25,000 K',
-        luminosity: '120,000 × Sun',
-        ra: '05h 34m 12.8s',
-        dec: '+22° 00\' 52"',
-        price: 9.99,
-        available: true,
-        owner: null,
-        story: 'Veloria Prime was first detected during our deep-field observation campaign in the Orion Molecular Cloud Complex. Its extraordinary blue luminosity caught the attention of our team on March 12, 2024. Spectral analysis revealed an unusually high concentration of ionized helium, suggesting this star is in a rare transitional phase between main sequence and supergiant classification. At approximately 1,240 light years from Earth, Veloria Prime illuminates a surrounding nebula with its intense ultraviolet radiation, creating one of the most stunning visual phenomena in this region of the Milky Way.'
-    },
-    {
-        id: 'LS-4518',
-        name: 'Aurelia Vega',
-        type: 'Golden Main Sequence',
-        image: 'https://images.unsplash.com/photo-1543722530-d2c3201371e7?w=600&h=400&fit=crop',
-        distance: '890 Light Years',
-        constellation: 'Lyra',
-        temperature: '5,800 K',
-        luminosity: '1.8 × Sun',
-        ra: '18h 36m 56.3s',
-        dec: '+38° 47\' 01"',
-        price: 9.99,
-        available: true,
-        owner: null,
-        story: 'Aurelia Vega was discovered during a routine survey of the Lyra constellation in January 2024. What makes this star remarkable is its near-perfect resemblance to our own Sun, but with a distinctive golden hue caused by slightly higher metallicity. Our spectroscopic analysis detected trace amounts of lithium-6, an extremely rare isotope that suggests this star formed from a unique pocket of primordial gas. The warm golden light of Aurelia Vega has made it one of our most popular naming choices for couples celebrating anniversaries.'
-    },
-    {
-        id: 'LS-8834',
-        name: 'Nebula Rose',
-        type: 'Red Giant',
-        image: 'https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=600&h=400&fit=crop',
-        distance: '2,100 Light Years',
-        constellation: 'Cygnus',
-        temperature: '3,500 K',
-        luminosity: '850 × Sun',
-        ra: '20h 41m 25.9s',
-        dec: '+45° 16\' 49"',
-        price: 9.99,
-        available: true,
-        owner: null,
-        story: 'Nebula Rose earned its name from the stunning rose-colored emission nebula it has created around itself as it expands in its red giant phase. Discovered in our Cygnus deep-field project in February 2024, this star represents one of the most visually breathtaking objects in our catalog. The surrounding gas cloud, rich in hydrogen-alpha emissions, glows with an ethereal pink light that extends over 2 light years in diameter. Infrared observations have revealed a complex system of dust lanes and gas shells, suggesting Nebula Rose has undergone multiple mass-ejection events over the past 100,000 years.'
-    },
-    {
-        id: 'LS-2057',
-        name: 'Crystallis',
-        type: 'White Dwarf',
-        image: 'https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?w=600&h=400&fit=crop',
-        distance: '340 Light Years',
-        constellation: 'Gemini',
-        temperature: '12,000 K',
-        luminosity: '0.02 × Sun',
-        ra: '07h 45m 18.9s',
-        dec: '+28° 01\' 34"',
-        price: 9.99,
-        available: true,
-        owner: null,
-        story: 'Crystallis is a remarkable white dwarf star discovered just 340 light years from Earth. What makes this star truly extraordinary is its crystallized carbon core — essentially, a diamond the size of Earth buried within a stellar remnant. Our team detected unusual pulsation patterns in April 2024 that confirmed the crystallization process. At 12,000 Kelvin, Crystallis still emits a brilliant white-blue light despite being in the final stages of stellar evolution. This star represents the ultimate transformation: from a massive burning furnace to a cosmic jewel that will shine for trillions of years.'
-    },
-    {
-        id: 'LS-6193',
-        name: 'Phoenix Ember',
-        type: 'Orange Subgiant',
-        image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop',
-        distance: '670 Light Years',
-        constellation: 'Phoenix',
-        temperature: '4,900 K',
-        luminosity: '12 × Sun',
-        ra: '01h 26m 08.4s',
-        dec: '-43° 19\' 22"',
-        price: 9.99,
-        available: false,
-        owner: 'Emily R.',
-        story: 'Phoenix Ember was discovered in the southern constellation of Phoenix during our December 2023 campaign. This orange subgiant is in a fascinating evolutionary stage — it has just exhausted the hydrogen in its core and is beginning its expansion toward red giant status. The warm amber light of Phoenix Ember is caused by its relatively cool surface temperature of 4,900 Kelvin. Our team was particularly excited to find evidence of a circumstellar disk, suggesting the possible formation of a second-generation planetary system around this aging star.'
-    },
-    {
-        id: 'LS-3376',
-        name: 'Sapphire Nova',
-        type: 'Blue-White Star',
-        image: 'https://images.unsplash.com/photo-1465101162946-4377e57745c3?w=600&h=400&fit=crop',
-        distance: '1,820 Light Years',
-        constellation: 'Scorpius',
-        temperature: '18,000 K',
-        luminosity: '5,200 × Sun',
-        ra: '16h 29m 24.4s',
-        dec: '-26° 25\' 55"',
-        price: 9.99,
-        available: true,
-        owner: null,
-        story: 'Sapphire Nova is one of the most luminous stars in our catalog, blazing with the intensity of 5,200 suns. Located in the rich star fields of Scorpius, this blue-white marvel was identified during a targeted search for high-mass stars in May 2024. Its surface temperature of 18,000 Kelvin gives it a distinctive sapphire-blue color visible even through modest telescopes. Spectral analysis has revealed powerful stellar winds traveling at over 2,000 kilometers per second, sculpting the surrounding interstellar medium into dramatic bow-shock structures.'
-    },
-    {
-        id: 'LS-9412',
-        name: 'Amber Solstice',
-        type: 'Yellow Giant',
-        image: 'https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?w=600&h=400&fit=crop',
-        distance: '520 Light Years',
-        constellation: 'Leo',
-        temperature: '5,200 K',
-        luminosity: '85 × Sun',
-        ra: '10h 08m 22.3s',
-        dec: '+11° 58\' 02"',
-        price: 9.99,
-        available: true,
-        owner: null,
-        story: 'Amber Solstice was discovered shining like a warm lantern in the constellation Leo during our spring 2024 observing season. This yellow giant has expanded to nearly 15 times the diameter of our Sun, casting a gentle golden light across its region of space. Our photometric monitoring revealed a subtle pulsation cycle of 47 days, during which the star gently brightens and dims like a cosmic heartbeat. The name "Solstice" was chosen by our discovery team because the star was first observed on the evening of the summer solstice.'
-    },
-    {
-        id: 'LS-1748',
-        name: 'Polaris Dream',
-        type: 'Blue Main Sequence',
-        image: 'https://images.unsplash.com/photo-1502134249126-9f3755a50d78?w=600&h=400&fit=crop',
-        distance: '1,450 Light Years',
-        constellation: 'Cassiopeia',
-        temperature: '15,500 K',
-        luminosity: '2,800 × Sun',
-        ra: '01h 11m 05.2s',
-        dec: '+63° 40\' 12"',
-        price: 9.99,
-        available: false,
-        owner: 'Michael & Sarah',
-        story: 'Polaris Dream sits in the northern constellation of Cassiopeia, a region rich with stellar nurseries and young star clusters. Discovered in November 2023, this blue main-sequence star captivated our team with its unusually stable luminosity — rare for such a massive young star. At 15,500 Kelvin, Polaris Dream emits a piercing blue light that dominates its local stellar neighborhood. Deep imaging has revealed it sits at the edge of a molecular cloud, and may be triggering new star formation through its intense radiation pressure.'
-    },
-    {
-        id: 'LS-5629',
-        name: 'Celestia Bright',
-        type: 'Binary Star System',
-        image: 'https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?w=600&h=400&fit=crop',
-        distance: '780 Light Years',
-        constellation: 'Andromeda',
-        temperature: '7,200 K / 6,800 K',
-        luminosity: '28 × Sun (combined)',
-        ra: '00h 42m 44.3s',
-        dec: '+41° 16\' 09"',
-        price: 14.99,
-        available: true,
-        owner: null,
-        story: 'Celestia Bright is actually two stars locked in an eternal cosmic dance — a binary star system where both components orbit each other every 12.4 days. Discovered in our Andromeda field survey in June 2024, this pair of near-identical white-gold stars creates a mesmerizing light variation as they alternately eclipse each other from our perspective on Earth. This makes Celestia Bright a perfect symbolic gift for couples: two stars, forever orbiting each other, inseparable across the vastness of space. Our team considers this one of the most romantic objects in the entire catalog.'
-    },
-    {
-        id: 'LS-8105',
-        name: 'Eternal Flame',
-        type: 'Red Supergiant',
-        image: 'https://images.unsplash.com/photo-1464802686167-b939a6910659?w=600&h=400&fit=crop',
-        distance: '3,200 Light Years',
-        constellation: 'Sagittarius',
-        temperature: '3,200 K',
-        luminosity: '45,000 × Sun',
-        ra: '18h 03m 37.0s',
-        dec: '-24° 23\' 12"',
-        price: 19.99,
-        available: true,
-        owner: null,
-        story: 'Eternal Flame is the crown jewel of our catalog — a colossal red supergiant star located in the direction of the galactic center in Sagittarius. With a luminosity of 45,000 times our Sun, this stellar titan would engulf the orbit of Jupiter if placed at the center of our solar system. Discovered during our galactic plane survey in August 2024, Eternal Flame displays complex surface features including enormous convection cells thousands of times larger than Earth. Despite its name suggesting permanence, this star is likely within the last 100,000 years of its life — a cosmic blink — before it will explode as a spectacular supernova.'
-    }
-];
+<!-- FIREBASE + APP SCRIPTS -->
+<script type="module">
+    // ===== FIREBASE SETUP =====
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, doc, getDocs, updateDoc, onSnapshot, query, orderBy }
+        from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-// ===== RENDER STAR CARDS =====
-function renderCatalog() {
-    const grid = document.getElementById('catalogGrid');
-    grid.innerHTML = '';
-    stars.forEach((star, index) => {
-        const isOwned = !star.available;
-        grid.innerHTML += `
-            <div class="star-card" onclick="openModal(${index})">
-                <div class="star-card-wrapper">
-                    <img class="star-card-image" src="${star.image}" alt="${star.name}" loading="lazy">
+    const firebaseConfig = {
+        apiKey: "AIzaSyAdEO2rA4C5rIdmTyS4iTSmpK6CsYgiNoQ",
+        authDomain: "love-star-595ad.firebaseapp.com",
+        projectId: "love-star-595ad",
+        storageBucket: "love-star-595ad.firebasestorage.app",
+        messagingSenderId: "197460069017",
+        appId: "1:197460069017:web:ba4db3ab3ed5a9400ac608"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // ===== STAR DATA =====
+    const starsData = [
+        { id:'LS-7291', name:'Veloria Prime', type:'Blue Supergiant', image:'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=600&h=400&fit=crop', distance:'1,240 Light Years', constellation:'Orion', temperature:'25,000 K', luminosity:'120,000 × Sun', ra:'05h 34m 12.8s', dec:'+22° 00\' 52"', price:9.99, story:'Veloria Prime was first detected during our deep-field observation campaign in the Orion Molecular Cloud Complex. Its extraordinary blue luminosity caught the attention of our team on March 12, 2024. Spectral analysis revealed an unusually high concentration of ionized helium, suggesting this star is in a rare transitional phase between main sequence and supergiant classification. At approximately 1,240 light years from Earth, Veloria Prime illuminates a surrounding nebula with its intense ultraviolet radiation, creating one of the most stunning visual phenomena in this region of the Milky Way.' },
+        { id:'LS-4518', name:'Aurelia Vega', type:'Golden Main Sequence', image:'https://images.unsplash.com/photo-1543722530-d2c3201371e7?w=600&h=400&fit=crop', distance:'890 Light Years', constellation:'Lyra', temperature:'5,800 K', luminosity:'1.8 × Sun', ra:'18h 36m 56.3s', dec:'+38° 47\' 01"', price:9.99, story:'Aurelia Vega was discovered during a routine survey of the Lyra constellation in January 2024. What makes this star remarkable is its near-perfect resemblance to our own Sun, but with a distinctive golden hue caused by slightly higher metallicity. Our spectroscopic analysis detected trace amounts of lithium-6, an extremely rare isotope that suggests this star formed from a unique pocket of primordial gas.' },
+        { id:'LS-8834', name:'Nebula Rose', type:'Red Giant', image:'https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=600&h=400&fit=crop', distance:'2,100 Light Years', constellation:'Cygnus', temperature:'3,500 K', luminosity:'850 × Sun', ra:'20h 41m 25.9s', dec:'+45° 16\' 49"', price:9.99, story:'Nebula Rose earned its name from the stunning rose-colored emission nebula it has created around itself as it expands in its red giant phase. Discovered in our Cygnus deep-field project in February 2024, this star represents one of the most visually breathtaking objects in our catalog. The surrounding gas cloud glows with an ethereal pink light that extends over 2 light years in diameter.' },
+        { id:'LS-2057', name:'Crystallis', type:'White Dwarf', image:'https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?w=600&h=400&fit=crop', distance:'340 Light Years', constellation:'Gemini', temperature:'12,000 K', luminosity:'0.02 × Sun', ra:'07h 45m 18.9s', dec:'+28° 01\' 34"', price:9.99, story:'Crystallis is a remarkable white dwarf star discovered just 340 light years from Earth. What makes this star truly extraordinary is its crystallized carbon core — essentially, a diamond the size of Earth. Our team detected unusual pulsation patterns in April 2024 that confirmed the crystallization process. This star represents the ultimate transformation: from a massive burning furnace to a cosmic jewel.' },
+        { id:'LS-6193', name:'Phoenix Ember', type:'Orange Subgiant', image:'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop', distance:'670 Light Years', constellation:'Phoenix', temperature:'4,900 K', luminosity:'12 × Sun', ra:'01h 26m 08.4s', dec:'-43° 19\' 22"', price:9.99, story:'Phoenix Ember was discovered in the southern constellation of Phoenix during our December 2023 campaign. This orange subgiant is in a fascinating evolutionary stage — it has just exhausted the hydrogen in its core and is beginning its expansion toward red giant status. Our team was particularly excited to find evidence of a circumstellar disk.' },
+        { id:'LS-3376', name:'Sapphire Nova', type:'Blue-White Star', image:'https://images.unsplash.com/photo-1465101162946-4377e57745c3?w=600&h=400&fit=crop', distance:'1,820 Light Years', constellation:'Scorpius', temperature:'18,000 K', luminosity:'5,200 × Sun', ra:'16h 29m 24.4s', dec:'-26° 25\' 55"', price:9.99, story:'Sapphire Nova is one of the most luminous stars in our catalog, blazing with the intensity of 5,200 suns. Located in the rich star fields of Scorpius, this blue-white marvel was identified during a targeted search for high-mass stars in May 2024. Spectral analysis has revealed powerful stellar winds traveling at over 2,000 kilometers per second.' },
+        { id:'LS-9412', name:'Amber Solstice', type:'Yellow Giant', image:'https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?w=600&h=400&fit=crop', distance:'520 Light Years', constellation:'Leo', temperature:'5,200 K', luminosity:'85 × Sun', ra:'10h 08m 22.3s', dec:'+11° 58\' 02"', price:9.99, story:'Amber Solstice was discovered shining like a warm lantern in the constellation Leo during our spring 2024 observing season. This yellow giant has expanded to nearly 15 times the diameter of our Sun. Our photometric monitoring revealed a subtle pulsation cycle of 47 days, during which the star gently brightens and dims like a cosmic heartbeat.' },
+        { id:'LS-1748', name:'Polaris Dream', type:'Blue Main Sequence', image:'https://images.unsplash.com/photo-1502134249126-9f3755a50d78?w=600&h=400&fit=crop', distance:'1,450 Light Years', constellation:'Cassiopeia', temperature:'15,500 K', luminosity:'2,800 × Sun', ra:'01h 11m 05.2s', dec:'+63° 40\' 12"', price:9.99, story:'Polaris Dream sits in the northern constellation of Cassiopeia, a region rich with stellar nurseries and young star clusters. Discovered in November 2023, this blue main-sequence star captivated our team with its unusually stable luminosity. Deep imaging has revealed it sits at the edge of a molecular cloud, and may be triggering new star formation.' },
+        { id:'LS-5629', name:'Celestia Bright', type:'Binary Star System', image:'https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?w=600&h=400&fit=crop', distance:'780 Light Years', constellation:'Andromeda', temperature:'7,200 K / 6,800 K', luminosity:'28 × Sun (combined)', ra:'00h 42m 44.3s', dec:'+41° 16\' 09"', price:14.99, story:'Celestia Bright is actually two stars locked in an eternal cosmic dance — a binary star system where both components orbit each other every 12.4 days. Discovered in our Andromeda field survey in June 2024, this pair of near-identical white-gold stars creates a mesmerizing light variation. Two stars, forever orbiting each other, inseparable across the vastness of space.' },
+        { id:'LS-8105', name:'Eternal Flame', type:'Red Supergiant', image:'https://images.unsplash.com/photo-1464802686167-b939a6910659?w=600&h=400&fit=crop', distance:'3,200 Light Years', constellation:'Sagittarius', temperature:'3,200 K', luminosity:'45,000 × Sun', ra:'18h 03m 37.0s', dec:'-24° 23\' 12"', price:19.99, story:'Eternal Flame is the crown jewel of our catalog — a colossal red supergiant located in the direction of the galactic center. With a luminosity of 45,000 times our Sun, this stellar titan would engulf the orbit of Jupiter if placed at the center of our solar system. Discovered during our galactic plane survey in August 2024, Eternal Flame displays complex surface features including enormous convection cells thousands of times larger than Earth.' }
+    ];
+
+    // ===== STATE =====
+    let currentStarIndex = null;
+    let starsState = {};
+
+    // ===== TOAST =====
+    function showToast(msg, type='success') {
+        const t = document.getElementById('toast');
+        t.textContent = msg;
+        t.className = `toast ${type}`;
+        t.style.display = 'block';
+        setTimeout(() => { t.style.display = 'none'; }, 3500);
+    }
+
+    // ===== LOADING =====
+    function showLoading(text='Loading...') {
+        document.getElementById('loadingText').textContent = text;
+        document.getElementById('loadingOverlay').classList.add('active');
+    }
+    function hideLoading() {
+        document.getElementById('loadingOverlay').classList.remove('active');
+    }
+
+    // ===== RENDER CATALOG =====
+    function renderCatalog() {
+        const grid = document.getElementById('catalogGrid');
+        grid.innerHTML = '';
+        starsData.forEach((star, index) => {
+            const state = starsState[star.id] || { available: true, owner: null };
+            const isOwned = !state.available;
+            grid.innerHTML += `
+                <div class="star-card" onclick="window._openModal(${index})">
                     <span class="star-status ${isOwned ? 'status-owned' : 'status-available'}">
                         ${isOwned ? '● Named' : '● Available'}
                     </span>
-                </div>
-                <div class="star-card-body">
-                    <div class="star-card-name">${star.name}</div>
-                    <div class="star-card-type">${star.type}</div>
-                    <div class="star-card-specs">
-                        <span class="spec-tag">📏 ${star.distance}</span>
-                        <span class="spec-tag">🌡 ${star.temperature}</span>
+                    <img class="star-card-image" src="${star.image}" alt="${star.name}" loading="lazy">
+                    <div class="star-card-body">
+                        <div class="star-card-name">${star.name}</div>
+                        <div class="star-card-type">${star.type}</div>
+                        <div class="star-card-specs">
+                            <span class="spec-tag">📏 ${star.distance}</span>
+                            <span class="spec-tag">🌡 ${star.temperature}</span>
+                        </div>
+                        ${isOwned ? `
+                            <div class="owner-banner">
+                                <div class="owner-label">Owned By</div>
+                                <div class="owner-name">${state.owner}</div>
+                            </div>
+                        ` : `
+                            <div class="star-card-price">
+                                <span class="star-price">$${star.price} <span>USD</span></span>
+                                <button class="star-card-btn">Name This Star</button>
+                            </div>
+                        `}
                     </div>
-                    ${isOwned ? `
-                        <div class="owner-banner">
-                            <div class="owner-label">Owned By</div>
-                            <div class="owner-name">${star.owner}</div>
-                        </div>
-                    ` : `
-                        <div class="star-card-price">
-                            <span class="star-price">$${star.price} <span>USD</span></span>
-                            <button class="star-card-btn">Name This Star</button>
-                        </div>
-                    `}
-                </div>
-            </div>
-        `;
-    });
-}
-
-// ===== MODAL =====
-function openModal(index) {
-    const star = stars[index];
-    document.getElementById('modalImage').src = star.image;
-    document.getElementById('modalName').textContent = star.name;
-    document.getElementById('modalType').textContent = star.type;
-    document.getElementById('modalDistance').textContent = star.distance;
-    document.getElementById('modalConstellation').textContent = star.constellation;
-    document.getElementById('modalTemp').textContent = star.temperature;
-    document.getElementById('modalLuminosity').textContent = star.luminosity;
-    document.getElementById('modalRA').textContent = star.ra;
-    document.getElementById('modalDEC').textContent = star.dec;
-    document.getElementById('modalStory').textContent = star.story;
-    document.getElementById('formStarName').value = star.name;
-    document.getElementById('formStarId').value = star.id;
-
-    // Show/hide purchase form vs certificate
-    if (star.available) {
-        document.getElementById('purchaseForm').style.display = 'block';
-        document.getElementById('certificatePlate').style.display = 'none';
-    } else {
-        document.getElementById('purchaseForm').style.display = 'none';
-        document.getElementById('certificatePlate').style.display = 'block';
-        document.getElementById('certOwnerName').textContent = star.owner;
-        document.getElementById('certStarNameDisplay').textContent = '★ ' + star.name;
-        document.getElementById('certRegId').textContent = star.id;
-        document.getElementById('certRegDate').textContent = 'January 15, 2025';
-        document.getElementById('certGiftFrom').textContent = '—';
+                </div>`;
+        });
     }
 
-    document.getElementById('formOwner').value = '';
-    document.getElementById('formGiver').value = '';
-    document.getElementById('modalOverlay').classList.add('active');
-    document.body.style.overflow = 'hidden';
+    // ===== OPEN MODAL =====
+    window._openModal = function(index) {
+        currentStarIndex = index;
+        const star = starsData[index];
+        const state = starsState[star.id] || { available: true, owner: null, giver: null, date: null };
 
-    // Store current star index
-    window.currentStarIndex = index;
-}
+        document.getElementById('modalImage').src = star.image;
+        document.getElementById('modalName').textContent = star.name;
+        document.getElementById('modalType').textContent = star.type;
+        document.getElementById('modalDistance').textContent = star.distance;
+        document.getElementById('modalConstellation').textContent = star.constellation;
+        document.getElementById('modalTemp').textContent = star.temperature;
+        document.getElementById('modalLuminosity').textContent = star.luminosity;
+        document.getElementById('modalRA').textContent = star.ra;
+        document.getElementById('modalDEC').textContent = star.dec;
+        document.getElementById('modalStory').textContent = star.story;
+        document.getElementById('formStarName').value = star.name;
+        document.getElementById('formStarId').value = star.id;
+        document.getElementById('formOwner').value = '';
+        document.getElementById('formGiver').value = '';
 
-function closeModal() {
-    document.getElementById('modalOverlay').classList.remove('active');
-    document.body.style.overflow = 'auto';
-}
+        const isOwned = !state.available;
+        document.getElementById('purchaseForm').style.display = isOwned ? 'none' : 'block';
 
-document.getElementById('modalOverlay').addEventListener('click', function(e) {
-    if (e.target === this) closeModal();
-});
+        const cert = document.getElementById('certificatePlate');
+        if (isOwned) {
+            cert.style.display = 'block';
+            document.getElementById('certOwnerName').textContent = state.owner;
+            document.getElementById('certStarNameDisplay').textContent = '★ ' + star.name;
+            document.getElementById('certRegId').textContent = star.id;
+            document.getElementById('certRegDate').textContent = state.date || '—';
+            document.getElementById('certGiftFrom').textContent = state.giver || '—';
+        } else {
+            cert.style.display = 'none';
+        }
 
-// ===== PURCHASE =====
-function purchaseStar() {
-    const owner = document.getElementById('formOwner').value.trim();
-    const giver = document.getElementById('formGiver').value.trim();
+        document.getElementById('modalOverlay').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    };
 
-    if (!owner) { alert('Please enter the star owner\'s name.'); return; }
-    if (!giver) { alert('Please enter the gift giver\'s name.'); return; }
+    // ===== CLOSE MODAL =====
+    window.closeModal = function() {
+        document.getElementById('modalOverlay').classList.remove('active');
+        document.body.style.overflow = 'auto';
+    };
 
-    const index = window.currentStarIndex;
-    const star = stars[index];
-
-    // Update star data
-    star.available = false;
-    star.owner = owner;
-
-    // Show certificate
-    document.getElementById('purchaseForm').style.display = 'none';
-    document.getElementById('certificatePlate').style.display = 'block';
-    document.getElementById('certOwnerName').textContent = owner;
-    document.getElementById('certStarNameDisplay').textContent = '★ ' + star.name;
-    document.getElementById('certRegId').textContent = star.id;
-    document.getElementById('certRegDate').textContent = new Date().toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
-    document.getElementById('certGiftFrom').textContent = giver;
-
-    // Scroll to certificate
-    document.getElementById('certificatePlate').scrollIntoView({ behavior: 'smooth' });
-
-    // Re-render catalog
-    renderCatalog();
-}
-
-// ===== STARFIELD ANIMATION =====
-const canvas = document.getElementById('starCanvas');
-const ctx = canvas.getContext('2d');
-let starsBg = [];
-function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-function createStarsBg() {
-    starsBg = [];
-    for (let i = 0; i < 180; i++) {
-        starsBg.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, size: Math.random()*1.8, speed: Math.random()*0.3+0.05, opacity: Math.random() });
-    }
-}
-function animateStarsBg() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    starsBg.forEach(s => {
-        s.opacity += Math.random()*0.02 - 0.01;
-        if (s.opacity < 0.1) s.opacity = 0.1;
-        if (s.opacity > 1) s.opacity = 1;
-        s.y += s.speed;
-        if (s.y > canvas.height) { s.y = 0; s.x = Math.random()*canvas.width; }
-        ctx.beginPath(); ctx.arc(s.x, s.y, s.size, 0, Math.PI*2);
-        ctx.fillStyle = `rgba(255,255,255,${s.opacity})`; ctx.fill();
+    document.getElementById('modalOverlay').addEventListener('click', function(e) {
+        if (e.target === this) window.closeModal();
     });
-    requestAnimationFrame(animateStarsBg);
-}
-resizeCanvas(); createStarsBg(); animateStarsBg();
-window.addEventListener('resize', () => { resizeCanvas(); createStarsBg(); });
 
-// ===== INIT =====
-renderCatalog();
+    // ===== PURCHASE STAR =====
+    window.purchaseStar = async function() {
+        const owner = document.getElementById('formOwner').value.trim();
+        const giver = document.getElementById('formGiver').value.trim();
+        if (!owner) { showToast('Please enter the star owner\'s name.', 'error'); return; }
+        if (!giver) { showToast('Please enter the gift giver\'s name.', 'error'); return; }
+
+        const star = starsData[currentStarIndex];
+        const state = starsState[star.id] || {};
+        if (!state.available && state.available !== undefined) {
+            showToast('This star has already been named!', 'error'); return;
+        }
+
+        const btn = document.getElementById('purchaseBtn');
+        btn.disabled = true;
+        btn.textContent = 'Registering...';
+
+        try {
+            const today = new Date().toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+            const starRef = doc(db, 'stars', star.id);
+            await updateDoc(starRef, {
+                available: false,
+                owner: owner,
+                giver: giver,
+                date: today
+            });
+
+            // Update local state immediately
+            starsState[star.id] = { available: false, owner, giver, date: today };
+
+            // Show certificate
+            document.getElementById('purchaseForm').style.display = 'none';
+            const cert = document.getElementById('certificatePlate');
+            cert.style.display = 'block';
+            document.getElementById('certOwnerName').textContent = owner;
+            document.getElementById('certStarNameDisplay').textContent = '★ ' + star.name;
+            document.getElementById('certRegId').textContent = star.id;
+            document.getElementById('certRegDate').textContent = today;
+            document.getElementById('certGiftFrom').textContent = giver;
+
+            renderCatalog();
+            showToast('⭐ Star successfully registered!', 'success');
+
+        } catch (err) {
+            console.error(err);
+            showToast('Something went wrong. Please try again.', 'error');
+            btn.disabled = false;
+            btn.textContent = 'Register This Star — $9.99';
+        }
+    };
+
+    // ===== LOAD STARS FROM FIREBASE =====
+    async function loadStars() {
+        showLoading('Loading star catalog...');
+        try {
+            const starsCol = collection(db, 'stars');
+
+            // Initialize stars in Firestore if not exist
+            const snapshot = await getDocs(starsCol);
+            const existingIds = snapshot.docs.map(d => d.id);
+
+            // Add missing stars to Firestore
+            const { setDoc } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js");
+            for (const star of starsData) {
+                if (!existingIds.includes(star.id)) {
+                    await setDoc(doc(db, 'stars', star.id), {
+                        available: true,
+                        owner: null,
+                        giver: null,
+                        date: null
+                    });
+                }
+            }
+
+            // Real-time listener
+            onSnapshot(starsCol, (snap) => {
+                snap.docs.forEach(d => {
+                    starsState[d.id] = d.data();
+                });
+                renderCatalog();
+                hideLoading();
+            });
+
+        } catch (err) {
+            console.error(err);
+            hideLoading();
+            showToast('Could not connect to database. Showing offline mode.', 'error');
+            starsData.forEach(s => { starsState[s.id] = { available: true }; });
+            renderCatalog();
+        }
+    }
+
+    // ===== STARFIELD =====
+    const canvas = document.getElementById('starCanvas');
+    const ctx = canvas.getContext('2d');
+    let bgStars = [];
+    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    function createBgStars() {
+        bgStars = [];
+        for (let i = 0; i < 180; i++) {
+            bgStars.push({ x:Math.random()*canvas.width, y:Math.random()*canvas.height, size:Math.random()*1.8, speed:Math.random()*0.3+0.05, opacity:Math.random() });
+        }
+    }
+    function animateBgStars() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        bgStars.forEach(s => {
+            s.opacity += Math.random()*0.02 - 0.01;
+            if (s.opacity < 0.1) s.opacity = 0.1;
+            if (s.opacity > 1) s.opacity = 1;
+            s.y += s.speed;
+            if (s.y > canvas.height) { s.y = 0; s.x = Math.random()*canvas.width; }
+            ctx.beginPath(); ctx.arc(s.x, s.y, s.size, 0, Math.PI*2);
+            ctx.fillStyle = `rgba(255,255,255,${s.opacity})`; ctx.fill();
+        });
+        requestAnimationFrame(animateBgStars);
+    }
+    resizeCanvas(); createBgStars(); animateBgStars();
+    window.addEventListener('resize', () => { resizeCanvas(); createBgStars(); });
+
+    // ===== START =====
+    loadStars();
 </script>
 
 </body>
