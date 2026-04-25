@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⭐ ستاره عشق | برای عشقت ستاره بخر</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Vazirmatn', Tahoma, Arial, sans-serif;
+            background: #0a0a1a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* ========== ستاره‌های پس‌زمینه ========== */
+        .stars-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+        }
+
+        .stars-bg::before,
+        .stars-bg::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            border-radius: 50%;
+            background: white;
+            box-shadow:
+                25px 50px white, 100px 80px white, 200px 30px white,
+                300px 150px white, 400px 60px white, 50px 200px white,
+                150px 300px white, 350px 250px white, 450px 100px white,
+                500px 350px white, 75px 400px white, 250px 450px white,
+                180px 120px white, 320px 380px white, 420px 200px white,
+                50px 350px white, 280px 50px white, 380px 300px white,
+                120px 250px white, 480px 400px white, 30px 150px white,
+                220px 200px white, 350px 100px white, 450px 350px white,
+                160px 450px white, 90px 300px white, 400px 450px white;
+            animation: twinkle 3s infinite alternate;
+        }
+
+        .stars-bg::after {
+            width: 1px;
+            height: 1px;
+            box-shadow:
+                60px 100px white, 180px 200px white, 300px 50px white,
+                420px 180px white, 80px 350px white, 240px 400px white,
+                360px 80px white, 500px 250px white, 140px 150px white,
+                280px 300px white, 400px 400px white, 20px 250px white;
+            animation: twinkle 5s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+
+        /* ========== ناوبری ========== */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(10, 10, 26, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: 900;
+            background: linear-gradient(135deg, #FFD700, #FF6B9D);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links a {
+            color: #ccc;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 0.95em;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #FFD700;
+        }
+
+        /* ========== بخش قهرمان ========== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 20px 80px;
+            position: relative;
+        }
+
+        .hero-star {
+            font-size: 5em;
+            animation: float 3s ease-in-out infinite;
+            margin-bottom: 30px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #FFD700, #FF6B9D, #A855F7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.5;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            color: #aaa;
+            max-width: 600px;
+            line-height: 2;
+            margin-bottom: 40px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 18px 50px;
+            background: linear-gradient(135deg, #FFD700, #FF6B9D);
+            color: #0a0a1a;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: 700;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.3);
+        }
+
+        /* ========== بخش "چطور کار می‌کنه" ========== */
+        .how-it-works {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.2em;
+            font-weight: 900;
+            margin-bottom: 60px;
+            background: linear-gradient(135deg, #FFD700, #FF6B9D);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .step {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.15);
+            border-radius: 20px;
+            padding: 40px 30px;
+            width: 280px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .step:hover {
+            transform: translateY(-10px);
+            border-color: #FFD700;
+        }
+
+        .step-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .step h3 {
+            color: #FFD700;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .step p {
+            color: #999;
+            line-height: 1.8;
+        }
+
+        /* ========== بخش پکیج‌ها ========== */
+        .packages {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .package-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .package {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.15);
+            border-radius: 25px;
+            padding: 40px 30px;
+            width: 320px;
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .package.popular {
+            border-color: #FFD700;
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #FFD700, #FF6B9D);
+            color: #0a0a1a;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 700;
+        }
+
+        .package:hover {
+            transform: translateY(-10px);
+        }
+
+        .package-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .package h3 {
+            color: #FFD700;
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 2.5em;
+            font-weight: 900;
+            margin: 20px 0;
+            background: linear-gradient(135deg, #FFD700, #FF6B9D);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .price span {
+            font-size: 0.4em;
+            color: #999;
+            -webkit-text-fill-color: #999;
+        }
+
+        .package ul {
+            list-style: none;
+            margin: 20px 0;
+            text-align: right;
+        }
+
+        .package ul li {
+            padding: 8px 0;
+            color: #bbb;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .package ul li::before {
+            content: '✨ ';
+        }
+
+        .package .cta-btn {
+            width: 100%;
+            margin-top: 20px;
+            font-size: 1em;
+            padding: 14px;
+        }
+
+        /* ========== بخش ساخت ستاره (AI) ========== */
+        .star-generator {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .generator-box {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 25px;
+            padding: 50px 30px;
+        }
+
+        .generator-box input,
+        .generator-box select,
+        .generator-box textarea {
+            width: 100%;
+            padding: 15px 20px;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 12px;
+            color: white;
+            font-family: 'Vazirmatn', Tahoma;
+            font-size: 1em;
+            direction: rtl;
+        }
+
+        .generator-box input:focus,
+        .generator-box select:focus,
+        .generator-box textarea:focus {
+            outline: none;
+            border-color: #FFD700;
+        }
+
+        .generator-box select option {
+            background: #1a1a2e;
+            color: white;
+        }
+
+        .star-preview {
+            margin: 30px auto;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%,
+                #FFD700, #FF6B9D, #A855F7, #1a1a2e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            animation: glow 2s ease-in-out infinite alternate;
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.3);
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.2); }
+            100% { box-shadow: 0 0 80px rgba(255, 215, 0, 0.5); }
+        }
+
+        .star-result {
+            display: none;
+            margin-top: 30px;
+            padding: 30px;
+            background: rgba(255, 215, 0, 0.05);
+            border: 1px solid #FFD700;
+            border-radius: 20px;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .star-name-display {
+            font-size: 1.8em;
+            font-weight: 900;
+            color: #FFD700;
+            margin: 15px 0;
+        }
+
+        .star-certificate {
+            background: linear-gradient(135deg,
+                rgba(255, 215, 0, 0.1),
+                rgba(168, 85, 247, 0.1));
+            border: 2px solid #FFD700;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        .star-certificate h4 {
+            color: #FFD700;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .star-certificate p {
+            color: #ccc;
+            line-height: 2;
+        }
+
+        /* ========== نظرات مشتریان ========== */
+        .testimonials {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .testimonial-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .testimonial {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            width: 300px;
+            text-align: right;
+        }
+
+        .testimonial .stars-rating {
+            color: #FFD700;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+
+        .testimonial p {
+            color: #bbb;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .testimonial .author {
+            color: #FF6B9D;
+            font-weight: 700;
+        }
+
+        /* ========== فوتر ========== */
+        footer {
+            background: rgba(0, 0, 0, 0.5);
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .social-links {
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            color: #FFD700;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #FF6B9D;
+        }
+
+        footer p {
+            color: #666;
+            margin-top: 20px;
+        }
+
+        /* ========== ریسپانسیو ========== */
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .nav-links a {
+                margin: 0 8px;
+                font-size: 0.85em;
+            }
+
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .hero-star {
+                font-size: 3em;
+            }
+
+            .step, .package, .testimonial {
+                width: 90%;
+            }
+
+            .price {
+                font-size: 2em;
+            }
+
+            .generator-box {
+                padding: 30px 20px;
+            }
+
+            .star-preview {
+                width: 150px;
+                height: 150px;
+                font-size: 3em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stars-bg"></div>
+
+    <!-- ========== ناوبری ========== -->
+    <nav>
+        <div class="logo">⭐ ستاره عشق</div>
+        <div class="nav-links">
+            <a href="#how">چطور کار می‌کنه؟</a>
+            <a href="#packages">پکیج‌ها</a>
+            <a href="#generator">ساخت ستاره</a>
+            <a href="#reviews">نظرات</a>
+        </div>
+    </nav>
+
+    <!-- ========== بخش قهرمان ========== -->
+    <section class="hero">
+        <div class="hero-star">⭐</div>
+        <h1>برای عشقت<br>یه ستاره بخر</h1>
+        <p>
+            با هوش مصنوعی، یک ستاره منحصربه‌فرد و اختصاصی
+            به نام عشقت بساز و برای همیشه در آسمان مجازی
+            ثبتش کن 💫
+        </p>
+        <a href="#generator" class="cta-btn">✨ همین الان ستاره بساز</a>
+    </section>
+
+    <!-- ========== چطور کار می‌کنه ========== -->
+    <section class="how-it-works" id="how">
+        <h2 class="section-title">💫 چطور کار می‌کنه؟</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-icon">💕</div>
+                <h3>۱. اسم عشقت رو بنویس</h3>
+                <p>اسم کسی که دوستش داری رو وارد کن تا ستاره به نام اون ثبت بشه</p>
+            </div>
+            <div class="step">
+                <div class="step-icon">🤖</div>
+                <h3>۲. هوش مصنوعی می‌سازه</h3>
+                <p>هوش مصنوعی ما یه ستاره کاملاً منحصربه‌فرد با رنگ و شکل خاص طراحی می‌کنه</p>
+            </div>
+            <div class="step">
+                <div class="step-icon">🎁</div>
+                <h3>۳. گواهی دریافت کن</h3>
+                <p>یه گواهی رسمی دیجیتال دریافت می‌کنی که می‌تونی هدیه بدی</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== پکیج‌ها ========== -->
+    <section class="packages" id="packages">
+        <h2 class="section-title">💎 پکیج‌ها</h2>
+        <div class="package-grid">
+
+            <div class="package">
+                <div class="package-icon">⭐</div>
+                <h3>ستاره نقره‌ای</h3>
+                <div class="price">۴۹,۰۰۰ <span>تومان</span></div>
+                <ul>
+                    <li>یک ستاره اختصاصی AI</li>
+                    <li>گواهی دیجیتال</li>
+                    <li>قابل اشتراک‌گذاری</li>
+                </ul>
+                <a href="#generator" class="cta-btn">انتخاب</a>
+            </div>
+
+            <div class="package popular">
+                <div class="popular-badge">🔥 پرطرفدار</div>
+                <div class="package-icon">🌟</div>
+                <h3>ستاره طلایی</h3>
+                <div class="price">۹۹,۰۰۰ <span>تومان</span></div>
+                <ul>
+                    <li>ستاره متحرک انیمیشنی</li>
+                    <li>گواهی دیجیتال لاکچری</li>
+                    <li>پیام عاشقانه AI</li>
+                    <li>قاب دیجیتال</li>
+                </ul>
+                <a href="#generator" class="cta-btn">انتخاب</a>
+            </div>
+
+            <div class="package">
+                <div class="package-icon">💎</div>
+                <h3>ستاره الماسی</h3>
+                <div class="price">۱۹۹,۰۰۰ <span>تومان</span></div>
+                <ul>
+                    <li>ستاره سه‌بعدی AI</li>
+                    <li>گواهی چاپی ارسال پستی</li>
+                    <li>ویدیو اختصاصی ۳۰ ثانیه</li>
+                    <li>ثبت در آسمان مجازی</li>
+                    <li>پشتیبانی ویژه</li>
+                </ul>
+                <a href="#generator" class="cta-btn">انتخاب</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========== ساخت ستاره با AI ========== -->
+    <section class="star-generator" id="generator">
+        <h2 class="section-title">🤖 ستاره‌ات رو بساز</h2>
+
+        <div class="generator-box">
+            <div class="star-preview" id="starPreview">⭐</div>
+
+            <input type="text" id="loverName"
+                   placeholder="💕 اسم عشقت رو بنویس..."
+                   maxlength="30">
+
+            <input type="text" id="yourName"
+                   placeholder="👤 اسم خودت..."
+                   maxlength="30">
+
+            <select id="starColor">
+                <option value="">🎨 رنگ ستاره رو انتخاب کن</option>
+                <option value="gold">طلایی ✨</option>
+                <option value="pink">صورتی 💗</option>
+                <option value="blue">آبی 💙</option>
+                <option value="purple">بنفش 💜</option>
+                <option value="red">قرمز ❤️</option>
+                <option value="rainbow">رنگین‌کمانی 🌈</option>
+            </select>
+
+            <textarea id="loveMessage"
+                      placeholder="💌 یه پیام عاشقانه بنویس... (اختیاری)"
+                      rows="3"></textarea>
+
+            <button class="cta-btn" onclick="generateStar()"
+                    style="width:100%; margin-top:20px;">
+                ✨ ساخت ستاره با هوش مصنوعی
+            </button>
+
+            <!-- نتیجه -->
+            <div class="star-result" id="starResult">
+                <div class="star-preview" id="generatedStar"
+                     style="margin: 0 auto 20px;">🌟</div>
+                <div class="star-name-display" id="starNameDisplay"></div>
+
+                <div class="star-certificate">
+                    <h4>📜 گواهی ثبت ستاره</h4>
+                    <p id="certificateText"></p>
+                </div>
+
+                <p id="aiMessage"
+                   style="color:#FF6B9D; font-size:1.1em;
+                          line-height:2; margin:20px 0;
+                          font-style:italic;"></p>
+
+                <button class="cta-btn" onclick="shareStar()">
+                    📤 اشتراک‌گذاری
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== نظرات ========== -->
+    <section class="testimonials" id="reviews">
+        <h2 class="section-title">💬 نظرات عاشقا</h2>
+        <div class="testimonial-grid">
+
+            <div class="testimonial">
+                <div class="stars-rating">⭐⭐⭐⭐⭐</div>
+                <p>بهترین هدیه‌ای بود که تا حالا به همسرم دادم!
+                   وقتی ستاره رو دید اشک شوق ریخت 😍</p>
+                <div class="author">— سارا و محمد</div>
+            </div>
+
+            <div class="testimonial">
+                <div class="stars-rating">⭐⭐⭐⭐⭐</div>
+                <p>ایده خیلی خلاقانه‌ایه. گواهی ستاره رو
+                   قاب کردم و گذاشتم کنار تختمون 💕</p>
+                <div class="author">— نیلوفر</div>
+            </div>
+
+            <div class="testimonial">
+                <div class="stars-rating">⭐⭐⭐⭐⭐</div>
+                <p>برای سالگرد ازدواجمون سفارش دادم.
+                   هوش مصنوعیش واقعاً خفنه! 🌟</p>
+                <div class="author">— علی و مریم</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========== فوتر ========== -->
+    <footer>
+        <div class="logo" style="font-size:1.8em; margin-bottom:15px;">
+            ⭐ ستاره عشق
+        </div>
+        <p style="color:#999; margin-bottom:20px;">
+            هر عشقی لایق یه ستاره‌ست 💫
+        </p>
+        <div class="social-links">
+            <a href="#">📸 اینستاگرام</a>
+            <a href="#">💬 تلگرام</a>
+            <a href="#">📱 واتساپ</a>
+        </div>
+        <p>تمامی حقوق محفوظ است © ۱۴۰۴ ستاره عشق</p>
+    </footer>
+
+    <!-- ========== جاوااسکریپت ========== -->
+    <script>
+        // رنگ‌های ستاره
+        const colorMap = {
+            gold: 'radial-gradient(circle at 30% 30%, #FFD700, #FFA500, #FF8C00, #1a1a2e)',
+            pink: 'radial-gradient(circle at 30% 30%, #FF6B9D, #FF1493, #C71585, #1a1a2e)',
+            blue: 'radial-gradient(circle at 30% 30%, #00BFFF, #1E90FF, #0000CD, #1a1a2e)',
+            purple: 'radial-gradient(circle at 30% 30%, #A855F7, #8B5CF6, #6D28D9, #1a1a2e)',
+            red: 'radial-gradient(circle at 30% 30%, #FF4444, #DC143C, #8B0000, #1a1a2e)',
+            rainbow: 'conic-gradient(#FF0000, #FF8C00, #FFD700, #00FF00, #00BFFF, #A855F7, #FF0000)'
+        };
+
+        // پیام‌های عاشقانه AI
+        const loveMessages = [
+            'عشق شما مثل این ستاره، تا ابد در آسمان می‌درخشد ✨',
+            'هر شب که به آسمان نگاه کنی، ستاره‌ات بهت چشمک می‌زنه 💫',
+            'این ستاره شاهد عشق پاک شماست و تا همیشه می‌درخشد 🌟',
+            'عشق واقعی مثل ستاره‌هاست، حتی در تاریکی هم نور می‌ده 💕',
+            'از میلیاردها ستاره آسمان، این یکی فقط مال شماست 💝',
+            'ستاره‌ها می‌آیند و می‌روند، اما ستاره عشق شما جاودانه است ⭐',
+        ];
+
+        // تغییر رنگ پیش‌نمایش
+        document.getElementById('starColor').addEventListener('change', function() {
+            const preview = document.getElementById('starPreview');
+            if (this.value && colorMap[this.value]) {
+                preview.style.background = colorMap[this.value];
+            }
+        });
+
+        // ساخت ستاره
+        function generateStar() {
+            const loverName = document.getElementById('loverName').value;
+            const yourName = document.getElementById('yourName').value;
+            const starColor = document.getElementById('starColor').value;
+            const loveMessage = document.getElementById('loveMessage').value;
+
+            if (!loverName) {
+                alert('💕 لطفاً اسم عشقت رو بنویس!');
+                return;
+            }
+            if (!yourName) {
+                alert('👤 لطفاً اسم خودت رو بنویس!');
+                return;
+            }
+            if (!starColor) {
+                alert('🎨 لطفاً رنگ ستاره رو انتخاب کن!');
+                return;
+            }
+
+            // شبیه‌سازی لودینگ AI
+            const btn = event.target;
+            btn.textContent = '🤖 هوش مصنوعی در حال ساخت...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                // نمایش نتیجه
+                const result = document.getElementById('starResult');
+                const generatedStar = document.getElementById('generatedStar');
+                const nameDisplay = document.getElementById('starNameDisplay');
+                const certificate = document.getElementById('certificateText');
+                const aiMsg = document.getElementById('aiMessage');
+
+                // تنظیم ستاره
+                generatedStar.style.background = colorMap[starColor];
+
+                // شماره ثبت تصادفی
+                const regNumber = 'STA-' + Math.floor(Math.random() * 900000 + 100000);
+
+                // تاریخ
+                const today = new Date();
+                const date = today.getFullYear() + '/' +
+                             (today.getMonth() + 1) + '/' +
+                             today.getDate();
+
+                nameDisplay.textContent = '⭐ ستاره ' + loverName;
+
+                certificate.innerHTML =
+                    'بدینوسیله گواهی می‌شود که ستاره‌ای در آسمان مجازی<br>' +
+                    'به نام <strong style="color:#FFD700;">' + loverName + '</strong><br>' +
+                    'از طرف <strong style="color:#FF6B9D;">' + yourName + '</strong><br>' +
+                    'ثبت و نام‌گذاری شد.<br><br>' +
+                    '📋 شماره ثبت: <strong>' + regNumber + '</strong><br>' +
+                    '📅 تاریخ ثبت: ' + date + '<br>' +
+                    (loveMessage ? '<br>💌 پیام: "' + loveMessage + '"' : '');
+
+                // پیام AI تصادفی
+                const randomMsg = loveMessages[Math.floor(Math.random() * loveMessages.length)];
+                aiMsg.textContent = '🤖 پیام هوش مصنوعی: ' + randomMsg;
+
+                result.style.display = 'block';
+                result.scrollIntoView({ behavior: 'smooth' });
+
+                btn.textContent = '✨ ساخت ستاره با هوش مصنوعی';
+                btn.disabled = false;
+            }, 3000);
+        }
+
+        // اشتراک‌گذاری
+        function shareStar() {
+            const loverName = document.getElementById('loverName').value;
+            const text = '⭐ من یه ستاره به نام ' + loverName +
+                         ' در آسمان ثبت کردم!\n💕 ستاره عشق\n🌐 setareh-eshgh.github.io';
+
+            if (navigator.share) {
+                navigator.share({
+                    title: 'ستاره عشق',
+                    text: text,
+                });
+            } else {
+                navigator.clipboard.writeText(text);
+                alert('📋 متن کپی شد! هر جا خواستی بچسبون');
+            }
+        }
+    </script>
+
+</body>
+</html>
